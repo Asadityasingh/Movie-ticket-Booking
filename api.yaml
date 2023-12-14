@@ -1,0 +1,323 @@
+openapi: 3.0.0
+info:
+  title: BookMyShow API
+  version: 1.0.0
+paths:
+  /users/{user_id}:
+    get:
+      summary: Get user by ID
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: User details
+    put:
+      summary: Update user by ID
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: User updated successfully
+    delete:
+      summary: Delete user by ID
+      parameters:
+        - name: user_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: User deleted successfully
+          
+  /users:
+    get:
+      summary: Get all users
+      responses:
+        '200':
+          description: List of users
+    post:
+      summary: Create new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '201':
+          description: User created successfully
+        '400':
+          description: User already exists or other error
+
+
+
+  /theatres/{theatre_id}:
+    get:
+      summary: Get theatre by ID
+      parameters:
+        - name: theatre_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Theatre details
+    put:
+      summary: Update theatre by ID
+      parameters:
+        - name: theatre_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                location:
+                  type: string
+                capacity:
+                  type: integer
+      responses:
+        '200':
+          description: Theatre updated successfully
+    delete:
+      summary: Delete theatre by ID
+      parameters:
+        - name: theatre_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Theatre deleted successfully
+
+  /theatres:
+    get:
+      summary: Get all theatres
+      responses:
+        '200':
+          description: List of theatres
+    post:
+      summary: Create new theatre
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                location:
+                  type: string
+                capacity:
+                  type: integer
+      responses:
+        '201':
+          description: Theatre created successfully
+        '400':
+          description: Error or validation issues
+
+
+
+  /shows/{show_id}:
+    get:
+      summary: Get show by ID
+      parameters:
+        - name: show_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Show details
+    put:
+      summary: Update show by ID
+      parameters:
+        - name: show_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                rating:
+                  type: number
+                ticket_price:
+                  type: number
+                start_time:
+                  type: string
+                end_time:
+                  type: string
+                theatre_id:
+                  type: integer
+      responses:
+        '200':
+          description: Show updated successfully
+    delete:
+      summary: Delete show by ID
+      parameters:
+        - name: show_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Show deleted successfully
+
+  /shows:
+    get:
+      summary: Get all shows
+      responses:
+        '200':
+          description: List of shows
+    post:
+      summary: Create new show
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                rating:
+                  type: number
+                ticket_price:
+                  type: number
+                start_time:
+                  type: string
+                end_time:
+                  type: string
+                theatre_id:
+                  type: integer
+      responses:
+        '201':
+          description: Show created successfully
+        '400':
+          description: Error or validation issues
+
+  /bookings/{booking_id}:
+    get:
+      summary: Get booking by ID
+      parameters:
+        - name: booking_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Booking details
+    put:
+      summary: Update booking by ID
+      parameters:
+        - name: booking_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                seats:
+                  type: integer
+      responses:
+        '200':
+          description: Booking updated successfully
+    delete:
+      summary: Delete booking by ID
+      parameters:
+        - name: booking_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Booking deleted successfully
+
+  /bookings:
+    get:
+      summary: Get all bookings
+      parameters:
+        - name: user_id
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of bookings
+    post:
+      summary: Create new booking
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                show_id:
+                  type: integer
+                user_id:
+                  type: integer
+                seats:
+                  type: integer
+      responses:
+        '201':
+          description: Booking created successfully
+        '400':
+          description: Error or validation issues
+
+
